@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx6sjl62aribv"]
+
+[ext_resource type="Script" path="res://menus/settings/volume_slider/volume_slider.gd" id="1_pe2py"]
+
+[node name="VolumeSlider" type="HSlider"]
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+script = ExtResource("1_pe2py")
+
+[connection signal="drag_ended" from="." to="." method="_on_drag_ended"]
