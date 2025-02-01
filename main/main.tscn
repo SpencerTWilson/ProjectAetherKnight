@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://2ce3g84hofpw"]
+[gd_scene load_steps=6 format=3 uid="uid://2ce3g84hofpw"]
+
+[ext_resource type="Texture2D" uid="uid://cyudu1uu0sk88" path="res://global_assets/testing/texture_07.png" id="1_eb17n"]
+[ext_resource type="PackedScene" uid="uid://d74bw6v7li70" path="res://characters/player/player.tscn" id="2_bqrx8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s61fu"]
+albedo_texture = ExtResource("1_eb17n")
+
+[sub_resource type="QuadMesh" id="QuadMesh_vktea"]
+size = Vector2(100, 100)
+orientation = 1
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rkw85"]
 
 [node name="Main" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_s61fu")
+mesh = SubResource("QuadMesh_vktea")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_rkw85")
+
+[node name="Player" parent="." instance=ExtResource("2_bqrx8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28975, 0)

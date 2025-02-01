@@ -1,3 +1,23 @@
-[gd_scene format=3 uid="uid://wk6373i2hno2"]
+[gd_scene load_steps=5 format=3 uid="uid://wk6373i2hno2"]
+
+[ext_resource type="Texture2D" uid="uid://cyudu1uu0sk88" path="res://global_assets/testing/texture_07.png" id="1_13nvq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqkeh"]
+albedo_texture = ExtResource("1_13nvq")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ufvjv"]
+size = Vector2(100, 100)
+orientation = 1
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0wukm"]
 
 [node name="LobbyRoom" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_yqkeh")
+mesh = SubResource("QuadMesh_ufvjv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_0wukm")
