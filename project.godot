@@ -13,7 +13,8 @@ config_version=5
 config/name="Project Aether Knight"
 run/main_scene="res://menus/multi_player_title_screen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="res://global_assets/promo/LOGO_Rework.png"
+config/icon="res://global_assets/promo/ICON.png"
 
 [autoload]
 
