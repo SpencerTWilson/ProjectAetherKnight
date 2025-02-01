@@ -15,6 +15,8 @@ Project aether knight is a fantasy first person multiplayer class based extracti
 ## Aether
 Aether is magic essence that can fill a space like a gas. It slowly blows into the map filling it and being a hazard.
 
+Does damage over time, and obscures vision.
+
 ## Classes
 
 ### Packrat
