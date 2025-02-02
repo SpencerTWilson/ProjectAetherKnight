@@ -1,16 +1,183 @@
-[gd_scene load_steps=3 format=3 uid="uid://d74bw6v7li70"]
+[gd_scene load_steps=4 format=3 uid="uid://d74bw6v7li70"]
+
+[ext_resource type="PackedScene" uid="uid://brut2isyt6e41" path="res://characters/player/AetherSeer.glb" id="1_omrv5"]
+[ext_resource type="Material" uid="uid://c507gbqo4q6q8" path="res://characters/player/porple.tres" id="2_6qpip"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nb4ei"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_lff34"]
+radius = 0.2
 
 [node name="Player" type="CharacterBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.993546, 0)
 shape = SubResource("CapsuleShape3D_nb4ei")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_lff34")
-
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550418, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82746, 0)
+
+[node name="AetherSeer" parent="." instance=ExtResource("1_omrv5")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="AetherSeer/Mage" index="0"]
+bones/0/position = Vector3(5.87956e-17, 0.968523, 0.0119955)
+bones/0/rotation = Quaternion(0.12582, 0, 0, 0.992053)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(-0.0750875, 0.216869, -0.0318716, 0.972787)
+bones/2/scale = Vector3(1.00041, 1.00041, 1.00041)
+bones/3/rotation = Quaternion(0.00162715, -1.14884e-09, -4.67531e-10, 0.999999)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/position = Vector3(-9.31323e-09, 0.192579, 2.11931e-08)
+bones/4/rotation = Quaternion(0.193939, -0.257046, 0.073339, 0.943894)
+bones/5/rotation = Quaternion(-0.0948575, -3.47671e-10, 3.31286e-11, 0.995491)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(-0.093712, 2.18202e-09, -1.37328e-10, 0.995599)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(2.53377e-08, 1.23719e-11, -4.94876e-11, 1)
+bones/9/rotation = Quaternion(-0.187729, -7.8724e-12, -9.44687e-12, 0.982221)
+bones/10/position = Vector3(0.0183, 0.137221, 0.078251)
+bones/10/rotation = Quaternion(-0.605155, -0.345862, -0.356135, 0.622363)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/position = Vector3(0.00941573, 0.232683, 0.0104241)
+bones/11/rotation = Quaternion(-0.323802, 0.935005, 0.0311414, 0.14124)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(0.423138, 0.0867763, -0.0477395, 0.900636)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(0.0798512, -0.0840668, -0.0781671, 0.990175)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(-0.0206193, 0.156182, 0.980159, 0.120292)
+bones/14/scale = Vector3(1.17621, 1.17621, 1.17621)
+bones/15/rotation = Quaternion(-0.0697372, 0.119267, 0.966904, 0.214498)
+bones/15/scale = Vector3(1.17621, 1.17621, 1.17621)
+bones/16/rotation = Quaternion(0.0758624, -0.00048768, 0.980807, 0.179616)
+bones/16/scale = Vector3(1.17621, 1.17621, 1.17621)
+bones/17/rotation = Quaternion(0.0758624, -0.00048768, 0.980807, 0.179616)
+bones/17/scale = Vector3(1.17621, 1.17621, 1.17621)
+bones/18/position = Vector3(-0.0183, 0.137221, 0.078251)
+bones/18/rotation = Quaternion(-0.605155, 0.345862, 0.356135, 0.622363)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/position = Vector3(-0.00941552, 0.232683, 0.0104244)
+bones/19/rotation = Quaternion(-0.13094, -0.150398, 0.739717, 0.642693)
+bones/19/scale = Vector3(1, 1, 1)
+bones/20/rotation = Quaternion(0.686863, -0.337649, 0.129271, 0.630477)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/rotation = Quaternion(0.197802, 0.115099, -0.0428392, 0.972518)
+bones/21/scale = Vector3(1, 1, 1)
+bones/22/rotation = Quaternion(0.0206194, 0.156182, 0.980159, -0.120292)
+bones/22/scale = Vector3(1.17621, 1.17621, 1.17621)
+bones/23/rotation = Quaternion(0.0697372, 0.119267, 0.966904, -0.214498)
+bones/23/scale = Vector3(1.17621, 1.17621, 1.17621)
+bones/24/rotation = Quaternion(-0.0758624, -0.000487686, 0.980807, -0.179616)
+bones/24/scale = Vector3(1.17621, 1.17621, 1.17621)
+bones/25/rotation = Quaternion(0.613981, -0.350913, -0.351159, 0.613657)
+bones/26/position = Vector3(0.1184, -0.00488117, -0.0427569)
+bones/26/rotation = Quaternion(3.37636e-08, 0.696936, 0.717133, 2.63904e-08)
+bones/26/scale = Vector3(1, 1, 1)
+bones/27/position = Vector3(-0.1184, -0.00488122, -0.0427569)
+bones/27/rotation = Quaternion(3.37636e-08, 0.696936, 0.717133, 2.63904e-08)
+bones/27/scale = Vector3(1, 1, 1)
+bones/28/rotation = Quaternion(0.0159083, -1.85602e-11, -2.47469e-11, 0.999873)
+bones/29/position = Vector3(-1.85955e-08, -6.59077e-09, -1.62152e-08)
+bones/29/rotation = Quaternion(-0.152455, -0.793331, -0.285504, 0.515627)
+bones/29/scale = Vector3(1, 1, 1)
+bones/30/position = Vector3(1.85955e-08, -6.59077e-09, -1.62152e-08)
+bones/30/rotation = Quaternion(-0.152455, 0.793331, 0.285504, 0.515627)
+bones/30/scale = Vector3(1, 1, 1)
+bones/31/position = Vector3(0.098, 0.0708183, 0.0259422)
+bones/31/rotation = Quaternion(0.667546, 0.0116111, 0.00315929, 0.744471)
+bones/32/rotation = Quaternion(0.743943, 0.0247502, 0.145458, 0.65175)
+bones/32/scale = Vector3(1, 1, 1)
+bones/33/rotation = Quaternion(-0.703519, -0.10349, -0.03381, 0.702287)
+bones/33/scale = Vector3(1, 1, 1)
+bones/34/rotation = Quaternion(0.015593, 0.95971, -0.275241, 0.054369)
+bones/34/scale = Vector3(1, 1, 1)
+bones/35/position = Vector3(-0.0476945, 0.0199703, 0.0831357)
+bones/35/rotation = Quaternion(0.689643, 0.667592, -0.15618, 0.23307)
+bones/35/scale = Vector3(1, 1, 1)
+bones/36/rotation = Quaternion(0.873554, 0.0787051, -0.0436227, -0.478336)
+bones/36/scale = Vector3(1.17621, 1.17621, 1.17621)
+bones/37/rotation = Quaternion(0.988296, 0.0470508, 0.0139376, 0.144438)
+bones/37/scale = Vector3(1.17621, 1.17621, 1.17621)
+bones/38/scale = Vector3(1.17621, 1.17621, 1.17621)
+bones/39/position = Vector3(-0.098, 0.0708184, 0.0259424)
+bones/39/rotation = Quaternion(0.973197, 0.0190345, -0.0674425, -0.219036)
+bones/39/scale = Vector3(1, 1, 1)
+bones/40/rotation = Quaternion(0.552541, 0.00536093, -0.0615651, 0.831192)
+bones/40/scale = Vector3(1, 1, 1)
+bones/41/rotation = Quaternion(-0.180553, 0.0325874, 0.0419897, 0.982128)
+bones/41/scale = Vector3(1, 1, 1)
+bones/42/rotation = Quaternion(-0.015593, 0.95971, -0.275241, -0.054369)
+bones/42/scale = Vector3(1, 1, 1)
+bones/43/position = Vector3(0.0476946, 0.0199703, 0.0831357)
+bones/43/rotation = Quaternion(0.689643, -0.667592, 0.15618, 0.23307)
+bones/43/scale = Vector3(1, 1, 1)
+bones/44/rotation = Quaternion(0.873554, -0.0787051, 0.0436226, -0.478337)
+bones/44/scale = Vector3(1.17621, 1.17621, 1.17621)
+bones/45/rotation = Quaternion(0.988296, -0.0470508, -0.0139376, 0.144438)
+bones/45/scale = Vector3(1.17621, 1.17621, 1.17621)
+bones/46/rotation = Quaternion(0.996133, -0.0790982, 0.00302783, -0.0381279)
+bones/46/scale = Vector3(1.17621, 1.17621, 1.17621)
+
+[node name="Cube_088" parent="AetherSeer/Mage/Skeleton3D" index="0"]
+transform = Transform3D(1.1709, -0.0135434, -0.115763, 0.0134956, 1.17661, -0.00115028, 0.115768, -0.000183114, 1.17098, 0.0037597, 1.81951, 0.0873784)
+
+[node name="Circle_004" parent="AetherSeer/Mage/Skeleton3D" index="1"]
+transform = Transform3D(0.477116, -0.00551862, -0.0471707, 0.00549917, 0.479442, -0.000468712, 0.0471729, -7.46147e-05, 0.477147, 0.00726439, 1.79246, 0.0725658)
+
+[node name="Circle_004" parent="AetherSeer/Mage/Skeleton3D/Circle_004" index="0"]
+surface_material_override/0 = ExtResource("2_6qpip")
+
+[node name="Cube_089" parent="AetherSeer/Mage/Skeleton3D" index="2"]
+transform = Transform3D(1.1709, -0.0135434, -0.115763, 0.0134956, 1.17661, -0.00115019, 0.115768, -0.000183225, 1.17098, 0.00776743, 1.66436, 0.0438272)
+
+[node name="Cube_094" parent="AetherSeer/Mage/Skeleton3D" index="3"]
+transform = Transform3D(1.02751, 0.5147, 0.252772, -0.19123, 0.796584, -0.844678, -0.540593, 0.696515, 0.779244, 0.155643, 1.2093, -0.605924)
+
+[node name="Cube_093" parent="AetherSeer/Mage/Skeleton3D" index="4"]
+transform = Transform3D(1.02751, 0.538554, 0.196899, -0.191229, 0.702749, -0.924214, -0.540593, 0.775048, 0.701181, 0.170444, 1.4517, -0.464028)
+
+[node name="Cube_091" parent="AetherSeer/Mage/Skeleton3D" index="5"]
+transform = Transform3D(1.06816, 0.479593, 0.116761, 0.076663, 0.113775, -1.16866, -0.487611, 1.06848, 0.072035, 0.210845, 1.56492, -0.0880687)
+
+[node name="Cube_092" parent="AetherSeer/Mage/Skeleton3D" index="6"]
+transform = Transform3D(1.06816, 0.479593, 0.116761, 0.076663, 0.113775, -1.16866, -0.487611, 1.06848, 0.072035, 0.171885, 1.56335, -0.220354)
+
+[node name="Cube_101" parent="AetherSeer/Mage/Skeleton3D" index="7"]
+transform = Transform3D(0.690581, -0.952233, -0.0307498, -0.903686, -0.666719, 0.35133, -0.301736, -0.182575, -1.12259, 0.077519, 1.75403, 0.480147)
+
+[node name="Cube_100" parent="AetherSeer/Mage/Skeleton3D" index="8"]
+transform = Transform3D(0.483084, -1.0054, 0.374705, -1.02001, -0.302848, 0.502447, -0.332865, -0.53109, -0.995861, -0.10636, 1.54702, 0.454339)
+
+[node name="Cube_099" parent="AetherSeer/Mage/Skeleton3D" index="9"]
+transform = Transform3D(1.06332, -0.442816, 0.240527, -0.048405, 0.469294, 1.07797, -0.501593, -0.984009, 0.405865, -0.18792, 1.51631, 0.260007)
+
+[node name="Cube_098" parent="AetherSeer/Mage/Skeleton3D" index="10"]
+transform = Transform3D(1.06361, 0.0505981, 0.500761, -0.0500908, 1.17556, -0.0123888, -0.500812, -0.0101188, 1.06474, -0.198353, 1.57053, 0.118257)
+
+[node name="Cube_090" parent="AetherSeer/Mage/Skeleton3D" index="11"]
+transform = Transform3D(1.06361, 0.0505981, 0.500761, -0.0500907, 1.17556, -0.0123886, -0.500812, -0.0101189, 1.06474, -0.00600554, 1.33207, 0.048265)
+
+[node name="Cube_097" parent="AetherSeer/Mage/Skeleton3D" index="12"]
+transform = Transform3D(1.11541, 0.366004, -0.0733225, -0.329782, 1.07448, 0.346714, 0.174869, -0.308233, 1.12155, 0.0343924, 0.491348, 0.531906)
+
+[node name="Cube_096" parent="AetherSeer/Mage/Skeleton3D" index="13"]
+transform = Transform3D(1.11541, 0.329908, -0.17463, -0.329782, 1.12873, 0.0259815, 0.174868, 0.0243241, 1.16288, 0.0778928, 0.76867, 0.455242)
+
+[node name="Cube_095" parent="AetherSeer/Mage/Skeleton3D" index="14"]
+transform = Transform3D(1.16314, 0.170589, -0.0384487, 6.55864e-07, 0.258612, 1.14742, 0.174868, -1.13467, 0.255738, 0.0917929, 0.963849, 0.251544)
+
+[node name="Cube_104" parent="AetherSeer/Mage/Skeleton3D" index="15"]
+transform = Transform3D(1.16595, -0.000505984, 0.154999, 0.0904566, -0.95291, -0.683553, 0.125868, 0.689513, -0.94456, -0.104284, 0.751913, -0.806679)
+
+[node name="Cube_103" parent="AetherSeer/Mage/Skeleton3D" index="16"]
+transform = Transform3D(1.16595, -0.124018, 0.0929764, 0.0904568, -0.0285064, -1.17238, 0.125867, 1.1693, -0.0187194, -0.0915529, 0.75302, -0.477782)
+
+[node name="Cube_102" parent="AetherSeer/Mage/Skeleton3D" index="17"]
+transform = Transform3D(1.14867, -0.179401, 0.178444, 0.253036, 0.814399, -0.810056, -3.09888e-08, 0.829478, 0.833925, -0.0926073, 0.898706, -0.105754)
+
+[node name="Circle_005" parent="AetherSeer/Mage/Skeleton3D" index="18"]
+material_override = ExtResource("2_6qpip")
+
+[node name="AnimationPlayer" parent="AetherSeer" index="1"]
+autoplay = "Idle"
+
+[editable path="AetherSeer"]
