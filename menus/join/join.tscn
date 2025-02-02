@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbr45ond4gte7"]
 
-[ext_resource type="Theme" path="res://Menus/title_theme.tres" id="1_j7djg"]
+[ext_resource type="Theme" uid="uid://ch6vnbcb46cct" path="res://menus/title_theme.tres" id="1_i2f4a"]
 [ext_resource type="Script" path="res://menus/join/join_button.gd" id="2_q5duk"]
 [ext_resource type="Script" path="res://menus/navigation/switch_scenes_btn.gd" id="3_xgrm4"]
 [ext_resource type="Script" path="res://menus/navigation/quit_btn.gd" id="4_hcxxk"]
@@ -35,7 +35,7 @@ alignment = 1
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_j7djg")
+theme = ExtResource("1_i2f4a")
 text = "Join"
 horizontal_alignment = 1
 
