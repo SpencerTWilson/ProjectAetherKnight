@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dovn08oqaeltt"]
 
 [ext_resource type="PackedScene" uid="uid://wk6373i2hno2" path="res://lobby/enviroment/lobby_enviroment.tscn" id="1_nxatf"]
-[ext_resource type="PackedScene" uid="uid://d74bw6v7li70" path="res://characters/player/player.tscn" id="2_rcbl6"]
+[ext_resource type="PackedScene" uid="uid://dfb58flace8iu" path="res://characters/player/first_person_controller/player.tscn" id="2_rcbl6"]
 
 [node name="Lobby" type="Node3D"]
 
