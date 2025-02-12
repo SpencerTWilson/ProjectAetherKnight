@@ -79,7 +79,4 @@ material_override = SubResource("StandardMaterial3D_tsne0")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="test/ceilings/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_671dl")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.246695, 0.969093, 0, -0.969093, 0.246695, 0, 10.8375, 0)
-
 [editable path="test"]
