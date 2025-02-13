@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2x5234n8mrmp"]
+
+[ext_resource type="PackedScene" uid="uid://dgq8cgbwyqo34" path="res://lobby/enviroment/Castle/pot.glb" id="1_bowbi"]
+
+[node name="Pot" type="Node3D"]
+
+[node name="pot" parent="." instance=ExtResource("1_bowbi")]

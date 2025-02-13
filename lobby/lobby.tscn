@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dovn08oqaeltt"]
+[gd_scene load_steps=4 format=3 uid="uid://dovn08oqaeltt"]
 
 [ext_resource type="PackedScene" uid="uid://wk6373i2hno2" path="res://lobby/enviroment/lobby_enviroment.tscn" id="1_nxatf"]
 [ext_resource type="PackedScene" uid="uid://dfsstupxalpsg" path="res://lobby/enviroment/Castle/castle.tscn" id="2_ugwaq"]
+[ext_resource type="PackedScene" uid="uid://d2x5234n8mrmp" path="res://lobby/enviroment/Castle/pot.tscn" id="3_mmdij"]
 
 [node name="Lobby" type="Node3D"]
 
 [node name="LobbyRoom" parent="." instance=ExtResource("1_nxatf")]
 
 [node name="Castle" parent="." instance=ExtResource("2_ugwaq")]
+
+[node name="Pot" parent="." instance=ExtResource("3_mmdij")]

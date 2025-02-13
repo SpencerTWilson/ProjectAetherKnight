@@ -230,6 +230,8 @@ shader_parameter/animation_speed = 1.0
 shader_parameter/noise = SubResource("NoiseTexture2D_fybhp")
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
+floor_constant_speed = true
+floor_snap_length = 0.14
 script = ExtResource("1_qak6g")
 base_speed = 100.0
 sprint_mult = 1.2
