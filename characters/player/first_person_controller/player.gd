@@ -23,7 +23,7 @@ var walk_input
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	walk_input = Input.get_vector("walk_left", "walk_right", "walk_forward", "walk_backward")
 	
 	move_and_slide()

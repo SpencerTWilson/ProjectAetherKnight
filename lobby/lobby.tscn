@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://wk6373i2hno2" path="res://lobby/enviroment/lobby_enviroment.tscn" id="1_nxatf"]
 [ext_resource type="PackedScene" uid="uid://dfsstupxalpsg" path="res://lobby/enviroment/Castle/castle.tscn" id="2_ugwaq"]
-[ext_resource type="PackedScene" uid="uid://d2x5234n8mrmp" path="res://lobby/enviroment/Castle/pot.tscn" id="3_mmdij"]
+[ext_resource type="PackedScene" path="res://lobby/enviroment/Castle/pot.tscn" id="3_mmdij"]
 
 [node name="Lobby" type="Node3D"]
 

@@ -13,10 +13,10 @@ func deactivate():
 	#called when a component is deactivated
 	pass
 
-func active(delta):
+func active(_delta):
 	#called every proccess call a component is active
 	pass
 
-func active_physics(delta):
+func active_physics(_delta):
 	#called every physics_proccess call a component is active
 	pass

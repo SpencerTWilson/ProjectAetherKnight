@@ -8,7 +8,7 @@ var walk_input
 func enter():
 	FRICTION = player.FRICTION
 
-func update(delta):
+func update(_delta):
 	walk_input = player.walk_input
 	
 	if walk_input.length() != 0:
