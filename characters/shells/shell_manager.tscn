@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://b3imi6fpm2bcc"]
+
+[node name="ShellManager" type="Node3D"]

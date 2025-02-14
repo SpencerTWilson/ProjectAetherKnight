@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bcif0srkar8ov" path="res://characters/player/first_person_controller/dot.png" id="18_vxwsk"]
 [ext_resource type="Shader" path="res://characters/player/first_person_controller/speed_lines.gdshader" id="19_6i4qg"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_lebme"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qldxx"]
 noise_type = 2
 fractal_gain = 4.0
 cellular_distance_function = 2
@@ -28,38 +28,38 @@ cellular_distance_function = 2
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rvm5x"]
 height = 128
 seamless = true
-noise = SubResource("FastNoiseLite_lebme")
+noise = SubResource("FastNoiseLite_qldxx")
 
-[sub_resource type="Gradient" id="Gradient_5k2o5"]
+[sub_resource type="Gradient" id="Gradient_c8wsu"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.119048, 0.253968, 0.690476)
 colors = PackedColorArray(0, 0, 0, 1, 0.285714, 0.285714, 0.285714, 1, 1, 1, 1, 1, 0.285714, 0.285714, 0.285714, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xb8hq"]
-gradient = SubResource("Gradient_5k2o5")
+gradient = SubResource("Gradient_c8wsu")
 
-[sub_resource type="Gradient" id="Gradient_xxr1n"]
+[sub_resource type="Gradient" id="Gradient_5840c"]
 colors = PackedColorArray(0.2021, 0.188, 0.47, 1, 0.648, 0.52, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_r12ns"]
-gradient = SubResource("Gradient_xxr1n")
+gradient = SubResource("Gradient_5840c")
 
-[sub_resource type="Gradient" id="Gradient_ygkhy"]
+[sub_resource type="Gradient" id="Gradient_jxhpv"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.460317, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_vrmvj"]
-gradient = SubResource("Gradient_ygkhy")
+gradient = SubResource("Gradient_jxhpv")
 
-[sub_resource type="Gradient" id="Gradient_dluel"]
+[sub_resource type="Gradient" id="Gradient_h1bpa"]
 offsets = PackedFloat32Array(0.309524, 0.404762, 0.873016)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ewnn1"]
-gradient = SubResource("Gradient_dluel")
+gradient = SubResource("Gradient_h1bpa")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6tgai"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2v584"]
 render_priority = 0
 shader = ExtResource("17_h1nik")
 shader_parameter/progress = 0.41
@@ -78,7 +78,7 @@ shader_parameter/mix_strength = 2.0
 shader_parameter/color_lookup = SubResource("GradientTexture1D_xb8hq")
 
 [sub_resource type="QuadMesh" id="QuadMesh_wfv3n"]
-material = SubResource("ShaderMaterial_6tgai")
+material = SubResource("ShaderMaterial_2v584")
 orientation = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l0pyi"]
@@ -98,7 +98,7 @@ radius = 0.290936
 _data = [Vector2(0, 1), 0.0, -2.21685, 0, 0, Vector2(1, 0), -1.00996, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_8kr70"]
+[sub_resource type="CurveTexture" id="CurveTexture_bjqxk"]
 curve = SubResource("Curve_op0xl")
 
 [sub_resource type="Curve" id="Curve_wee63"]
@@ -106,7 +106,7 @@ max_value = 3.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.882038, 1.28238), 0.0, 0.0, 0, 0, Vector2(1, 0.514508), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_xgsvr"]
+[sub_resource type="CurveTexture" id="CurveTexture_pn2wv"]
 curve = SubResource("Curve_wee63")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sfwpr"]
@@ -115,15 +115,15 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.0
 emission_ring_radius = 0.5
 emission_ring_inner_radius = 0.2
-radial_velocity_curve = SubResource("CurveTexture_8kr70")
+radial_velocity_curve = SubResource("CurveTexture_bjqxk")
 gravity = Vector3(0, 0, 0)
 radial_accel_min = 43.0
 radial_accel_max = 43.0
 scale_min = 0.02
 scale_max = 0.05
-scale_over_velocity_curve = SubResource("CurveTexture_xgsvr")
+scale_over_velocity_curve = SubResource("CurveTexture_pn2wv")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71uf5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67vwx"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -132,14 +132,14 @@ albedo_texture = ExtResource("18_vxwsk")
 metallic_specular = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_urwmm"]
-material = SubResource("StandardMaterial3D_71uf5")
+material = SubResource("StandardMaterial3D_67vwx")
 orientation = 2
 
 [sub_resource type="Curve" id="Curve_ib4g3"]
 _data = [Vector2(0, 1), 0.0, -2.21685, 0, 0, Vector2(1, 0), -1.00996, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_0d821"]
+[sub_resource type="CurveTexture" id="CurveTexture_0k42m"]
 curve = SubResource("Curve_ib4g3")
 
 [sub_resource type="Curve" id="Curve_5r8p6"]
@@ -147,7 +147,7 @@ max_value = 3.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.882038, 1.28238), 0.0, 0.0, 0, 0, Vector2(1, 0.514508), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_ktgqe"]
+[sub_resource type="CurveTexture" id="CurveTexture_devc6"]
 curve = SubResource("Curve_5r8p6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wycav"]
@@ -156,13 +156,13 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 0.7
-radial_velocity_curve = SubResource("CurveTexture_0d821")
+radial_velocity_curve = SubResource("CurveTexture_0k42m")
 gravity = Vector3(0, 0, 0)
 radial_accel_min = -43.0
 radial_accel_max = -43.0
 scale_min = 0.02
 scale_max = 0.05
-scale_over_velocity_curve = SubResource("CurveTexture_ktgqe")
+scale_over_velocity_curve = SubResource("CurveTexture_devc6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bfgia"]
 emission_shape_scale = Vector3(0.2, 1, 0.2)
@@ -175,7 +175,7 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.01
 scale_max = 0.1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82eoa"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ds5yd"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -183,7 +183,7 @@ albedo_color = Color(0.505882, 0.447059, 0.952941, 1)
 albedo_texture = ExtResource("18_vxwsk")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0sm34"]
-material = SubResource("StandardMaterial3D_82eoa")
+material = SubResource("StandardMaterial3D_ds5yd")
 orientation = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tm0hf"]

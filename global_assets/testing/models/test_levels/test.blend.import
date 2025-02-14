@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://daxnvqvccar4"
-path="res://.godot/imported/test.blend-b6cc0933ff369ee1fe2d927be97bcd0b.scn"
+path="res://.godot/imported/test.blend-8293477d561588004426f73db67445ba.scn"
 
 [deps]
 
-source_file="res://Test Levels/test.blend"
-dest_files=["res://.godot/imported/test.blend-b6cc0933ff369ee1fe2d927be97bcd0b.scn"]
+source_file="res://global_assets/testing/models/test_levels/test.blend"
+dest_files=["res://.godot/imported/test.blend-8293477d561588004426f73db67445ba.scn"]
 
 [params]
 
