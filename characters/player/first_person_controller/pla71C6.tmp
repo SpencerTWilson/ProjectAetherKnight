@@ -1,0 +1,463 @@
+[gd_scene load_steps=58 format=3 uid="uid://dfb58flace8iu"]
+
+[ext_resource type="Script" path="res://characters/player/first_person_controller/player.gd" id="1_qak6g"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/states/MovementStateMachine.gd" id="2_gnkix"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/states/PlayerIdle.gd" id="3_v3i8l"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/states/PlayerWalk.gd" id="4_vvoct"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/states/InAir.gd" id="5_vg3ak"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/Components/ComponentManager.gd" id="6_57dhv"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/Components/jump.gd" id="7_30lfh"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/Components/crouch.gd" id="8_buc5u"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/Components/sprint.gd" id="9_2v043"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/Components/ground_friction.gd" id="10_7husb"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/Components/air_friction.gd" id="11_rr7xu"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/Components/speed_lines.gd" id="12_ex8nv"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/states/CameraStateMachine.gd" id="13_hh318"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/states/conversation_camera.gd" id="14_oid0m"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/states/first_person_camera.gd" id="15_3bgrm"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/freeze_camera.gd" id="16_7vt1k"]
+[ext_resource type="Shader" path="res://characters/player/first_person_controller/slash_fade.gdshader" id="17_h1nik"]
+[ext_resource type="Texture2D" uid="uid://bcif0srkar8ov" path="res://characters/player/first_person_controller/dot.png" id="18_vxwsk"]
+[ext_resource type="Shader" path="res://characters/player/first_person_controller/speed_lines.gdshader" id="19_6i4qg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lebme"]
+noise_type = 2
+fractal_gain = 4.0
+cellular_distance_function = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rvm5x"]
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_lebme")
+
+[sub_resource type="Gradient" id="Gradient_5k2o5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.119048, 0.253968, 0.690476)
+colors = PackedColorArray(0, 0, 0, 1, 0.285714, 0.285714, 0.285714, 1, 1, 1, 1, 1, 0.285714, 0.285714, 0.285714, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xb8hq"]
+gradient = SubResource("Gradient_5k2o5")
+
+[sub_resource type="Gradient" id="Gradient_xxr1n"]
+colors = PackedColorArray(0.2021, 0.188, 0.47, 1, 0.648, 0.52, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r12ns"]
+gradient = SubResource("Gradient_xxr1n")
+
+[sub_resource type="Gradient" id="Gradient_ygkhy"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.460317, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vrmvj"]
+gradient = SubResource("Gradient_ygkhy")
+
+[sub_resource type="Gradient" id="Gradient_dluel"]
+offsets = PackedFloat32Array(0.309524, 0.404762, 0.873016)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ewnn1"]
+gradient = SubResource("Gradient_dluel")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6tgai"]
+render_priority = 0
+shader = ExtResource("17_h1nik")
+shader_parameter/progress = 0.41
+shader_parameter/derive_progress = 0.0
+shader_parameter/ease_progress = 0.0
+shader_parameter/time_scale = 1.0
+shader_parameter/anim_rot_amt = 1.0
+shader_parameter/zoom = 0.6
+shader_parameter/rotate_all = 285.0
+shader_parameter/base_noise = SubResource("NoiseTexture2D_rvm5x")
+shader_parameter/width_gradient_mask = SubResource("GradientTexture1D_ewnn1")
+shader_parameter/length_gradient_mask = SubResource("GradientTexture1D_vrmvj")
+shader_parameter/highlight = SubResource("GradientTexture1D_r12ns")
+shader_parameter/emission_strength = 1.0
+shader_parameter/mix_strength = 2.0
+shader_parameter/color_lookup = SubResource("GradientTexture1D_xb8hq")
+
+[sub_resource type="QuadMesh" id="QuadMesh_wfv3n"]
+material = SubResource("ShaderMaterial_6tgai")
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l0pyi"]
+size = Vector3(1.67, 0.285, 1.98418)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mo5y0"]
+size = Vector3(0.338867, 2.25587, 1.97979)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8ceci"]
+size = Vector3(0.488192, 0.481209, 1.98418)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_alvff"]
+height = 1.0
+radius = 0.290936
+
+[sub_resource type="Curve" id="Curve_op0xl"]
+_data = [Vector2(0, 1), 0.0, -2.21685, 0, 0, Vector2(1, 0), -1.00996, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8kr70"]
+curve = SubResource("Curve_op0xl")
+
+[sub_resource type="Curve" id="Curve_wee63"]
+max_value = 3.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.882038, 1.28238), 0.0, 0.0, 0, 0, Vector2(1, 0.514508), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xgsvr"]
+curve = SubResource("Curve_wee63")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sfwpr"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 0.5
+emission_ring_inner_radius = 0.2
+radial_velocity_curve = SubResource("CurveTexture_8kr70")
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 43.0
+radial_accel_max = 43.0
+scale_min = 0.02
+scale_max = 0.05
+scale_over_velocity_curve = SubResource("CurveTexture_xgsvr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71uf5"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.505882, 0.447059, 0.952941, 1)
+albedo_texture = ExtResource("18_vxwsk")
+metallic_specular = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_urwmm"]
+material = SubResource("StandardMaterial3D_71uf5")
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_ib4g3"]
+_data = [Vector2(0, 1), 0.0, -2.21685, 0, 0, Vector2(1, 0), -1.00996, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0d821"]
+curve = SubResource("Curve_ib4g3")
+
+[sub_resource type="Curve" id="Curve_5r8p6"]
+max_value = 3.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.882038, 1.28238), 0.0, 0.0, 0, 0, Vector2(1, 0.514508), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ktgqe"]
+curve = SubResource("Curve_5r8p6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wycav"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.7
+radial_velocity_curve = SubResource("CurveTexture_0d821")
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -43.0
+radial_accel_max = -43.0
+scale_min = 0.02
+scale_max = 0.05
+scale_over_velocity_curve = SubResource("CurveTexture_ktgqe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bfgia"]
+emission_shape_scale = Vector3(0.2, 1, 0.2)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82eoa"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.505882, 0.447059, 0.952941, 1)
+albedo_texture = ExtResource("18_vxwsk")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0sm34"]
+material = SubResource("StandardMaterial3D_82eoa")
+orientation = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tm0hf"]
+radius = 0.285103
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ltaj8"]
+noise_type = 5
+seed = 117
+frequency = 0.2
+fractal_lacunarity = 0.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6gqm2"]
+noise = SubResource("FastNoiseLite_ltaj8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tyaln"]
+shader = ExtResource("19_6i4qg")
+shader_parameter/line_color = Color(0.643733, 0.408, 0.85, 0.329412)
+shader_parameter/line_count = 1.7
+shader_parameter/line_density = 1.0
+shader_parameter/line_faloff = 0.25
+shader_parameter/mask_size = 0.1
+shader_parameter/mask_edge = 0.755
+shader_parameter/animation_speed = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_6gqm2")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_scmdy"]
+noise_type = 5
+seed = 117
+frequency = 0.2
+fractal_lacunarity = 0.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fybhp"]
+noise = SubResource("FastNoiseLite_scmdy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xkksl"]
+shader = ExtResource("19_6i4qg")
+shader_parameter/line_color = Color(0.54432, 0.2856, 0.84, 0.505882)
+shader_parameter/line_count = 1.7
+shader_parameter/line_density = 0.385
+shader_parameter/line_faloff = 0.114
+shader_parameter/mask_size = 0.342
+shader_parameter/mask_edge = 1.0
+shader_parameter/animation_speed = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_fybhp")
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+floor_constant_speed = true
+floor_snap_length = 0.14
+script = ExtResource("1_qak6g")
+base_speed = 100.0
+sprint_mult = 1.2
+FRICTION = 10.0
+AIR_FRICTION = 3.0
+
+[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_gnkix")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="MovementStateMachine"]
+script = ExtResource("3_v3i8l")
+active_components = ["jump", "crouch", "ground_friction", "sprint"]
+
+[node name="Walk" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("camera_x")]
+script = ExtResource("4_vvoct")
+camera_x = NodePath("../../Camera/x")
+active_components = ["jump", "crouch", "sprint", "ground_friction", "speed_lines"]
+
+[node name="InAir" type="Node" parent="MovementStateMachine" node_paths=PackedStringArray("camera_x", "land_particles")]
+script = ExtResource("5_vg3ak")
+camera_x = NodePath("../../Camera/x")
+land_particles = NodePath("../../Camera/x/y/Camera3D/VisualEffects/Jump")
+active_components = ["crouch", "sprint", "air_friction", "speed_lines"]
+
+[node name="Components" type="Node" parent="."]
+script = ExtResource("6_57dhv")
+
+[node name="jump" type="Node" parent="Components" node_paths=PackedStringArray("particles", "Manager")]
+script = ExtResource("7_30lfh")
+particles = NodePath("../../Camera/x/y/Camera3D/VisualEffects/Land")
+Manager = NodePath("..")
+is_active = true
+
+[node name="crouch" type="Node" parent="Components" node_paths=PackedStringArray("collision_shape", "area", "Manager")]
+script = ExtResource("8_buc5u")
+collision_shape = NodePath("../../CollisionShape3D")
+time = 0.2
+area = NodePath("../../Camera/x/y/Camera3D/Areas/Area3D")
+Manager = NodePath("..")
+is_active = true
+
+[node name="sprint" type="Node" parent="Components" node_paths=PackedStringArray("particles", "Manager")]
+script = ExtResource("9_2v043")
+particles = NodePath("../../Camera/x/y/Camera3D/VisualEffects/Sprint")
+Manager = NodePath("..")
+is_active = true
+
+[node name="ground_friction" type="Node" parent="Components"]
+script = ExtResource("10_7husb")
+is_active = true
+
+[node name="air_friction" type="Node" parent="Components"]
+script = ExtResource("11_rr7xu")
+
+[node name="speed_lines" type="Node" parent="Components" node_paths=PackedStringArray("ui_node", "ui_node2", "Manager")]
+script = ExtResource("12_ex8nv")
+ui_node = NodePath("../../UI/SpeedLines")
+ui_node2 = NodePath("../../UI/SpeedLines2")
+Manager = NodePath("..")
+is_active = true
+
+[node name="Camera" type="Node3D" parent="."]
+
+[node name="CameraStateMachine" type="Node" parent="Camera" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("13_hh318")
+initial_state = NodePath("first_person_camera")
+
+[node name="conversation_camera" type="Node" parent="Camera/CameraStateMachine" node_paths=PackedStringArray("end_point", "camera", "Manager")]
+script = ExtResource("14_oid0m")
+end_point = NodePath("end_point")
+camera = NodePath("../../x/y/Camera3D")
+Manager = NodePath("..")
+
+[node name="end_point" type="Node3D" parent="Camera/CameraStateMachine/conversation_camera"]
+transform = Transform3D(0.0523933, 0.402194, -0.914054, 0, 0.915311, 0.402747, 0.998627, -0.0211013, 0.0479562, -2.60557, 1.76479, -1.36773)
+
+[node name="first_person_camera" type="Node" parent="Camera/CameraStateMachine" node_paths=PackedStringArray("x_rotation", "y_rotation")]
+script = ExtResource("15_3bgrm")
+x_rotation = NodePath("../../x")
+y_rotation = NodePath("../../x/y")
+sensitivity = 0.005
+
+[node name="freeze_camera" type="Node" parent="Camera/CameraStateMachine"]
+script = ExtResource("16_7vt1k")
+
+[node name="x" type="Node3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.709726, 0)
+
+[node name="y" type="Node3D" parent="Camera/x"]
+
+[node name="Camera3D" type="Camera3D" parent="Camera/x/y"]
+
+[node name="Areas" type="Node3D" parent="Camera/x/y/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.709726, 0)
+
+[node name="Area3D2" type="Area3D" parent="Camera/x/y/Camera3D/Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70013, -0.546589)
+
+[node name="right" type="MeshInstance3D" parent="Camera/x/y/Camera3D/Areas/Area3D2"]
+transform = Transform3D(1.69384, 0.095551, 3.79815, 1.34649, 0.915717, -1.00258, -3.57383, 0.390297, 1.42242, 0, -0.547128, 0.546589)
+visible = false
+mesh = SubResource("QuadMesh_wfv3n")
+skeleton = NodePath("")
+
+[node name="left" type="MeshInstance3D" parent="Camera/x/y/Camera3D/Areas/Area3D2"]
+transform = Transform3D(4.10291, -0.147303, 0.493034, 0.752196, 0.918761, -1.46805, -0.236732, 0.366306, 3.88039, 0, -0.547128, 0.546589)
+visible = false
+mesh = SubResource("QuadMesh_wfv3n")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera/x/y/Camera3D/Areas/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.445509)
+shape = SubResource("BoxShape3D_l0pyi")
+
+[node name="Area3D3" type="Area3D" parent="Camera/x/y/Camera3D/Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70013, -0.546589)
+
+[node name="down" type="MeshInstance3D" parent="Camera/x/y/Camera3D/Areas/Area3D3"]
+transform = Transform3D(0.92098, 0.950163, -0.92098, -2.95418, -3.09086e-08, -2.95418, -2.80695, 0.311754, 2.80695, -0.423872, -0.547128, -0.324212)
+visible = false
+mesh = SubResource("QuadMesh_wfv3n")
+skeleton = NodePath("")
+
+[node name="up" type="MeshInstance3D" parent="Camera/x/y/Camera3D/Areas/Area3D3"]
+transform = Transform3D(-0.960586, 0.972325, 0.173199, 3.18024, 0.206218, -2.5687, -2.53333, -0.109809, -3.29032, 0.372751, -0.547128, -0.324212)
+visible = false
+mesh = SubResource("QuadMesh_wfv3n")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera/x/y/Camera3D/Areas/Area3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.468633, -0.443312)
+shape = SubResource("BoxShape3D_mo5y0")
+
+[node name="Area3D4" type="Area3D" parent="Camera/x/y/Camera3D/Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70013, -0.546589)
+
+[node name="center" type="MeshInstance3D" parent="Camera/x/y/Camera3D/Areas/Area3D4"]
+transform = Transform3D(0.0359526, 0, -3.14299, -1.05892, 0.998597, -0.000299142, 19.9719, 0.052946, 0.00564203, -1.099, 0, 0)
+visible = false
+mesh = SubResource("QuadMesh_wfv3n")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera/x/y/Camera3D/Areas/Area3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00040105, -0.0555037, -0.445509)
+shape = SubResource("BoxShape3D_8ceci")
+
+[node name="Area3D" type="Area3D" parent="Camera/x/y/Camera3D/Areas"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera/x/y/Camera3D/Areas/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("CylinderShape3D_alvff")
+
+[node name="VisualEffects" type="Node3D" parent="Camera/x/y/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.709726, 0)
+
+[node name="Jump" type="GPUParticles3D" parent="Camera/x/y/Camera3D/VisualEffects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.747019, 0)
+cast_shadow = 0
+emitting = false
+amount = 100
+lifetime = 0.15
+one_shot = true
+explosiveness = 0.7
+randomness = 1.0
+fixed_fps = 60
+transform_align = 3
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_sfwpr")
+draw_pass_1 = SubResource("PlaneMesh_urwmm")
+
+[node name="Land" type="GPUParticles3D" parent="Camera/x/y/Camera3D/VisualEffects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.747019, 0)
+cast_shadow = 0
+emitting = false
+amount = 100
+lifetime = 0.15
+one_shot = true
+explosiveness = 0.7
+randomness = 1.0
+fixed_fps = 60
+transform_align = 3
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_wycav")
+draw_pass_1 = SubResource("PlaneMesh_urwmm")
+
+[node name="Sprint" type="GPUParticles3D" parent="Camera/x/y/Camera3D/VisualEffects"]
+cast_shadow = 0
+emitting = false
+amount = 20
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_bfgia")
+draw_pass_1 = SubResource("PlaneMesh_0sm34")
+
+[node name="FirstPersonCameraPoint" type="Node3D" parent="Camera/x/y"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_tm0hf")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="SpeedLines" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_tyaln")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SpeedLines2" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_xkksl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

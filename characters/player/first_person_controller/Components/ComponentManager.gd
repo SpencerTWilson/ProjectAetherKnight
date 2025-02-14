@@ -1,5 +1,5 @@
 extends Node
-class_name component_manager
+class_name ComponentManager
 
 var components : Dictionary = {}
 

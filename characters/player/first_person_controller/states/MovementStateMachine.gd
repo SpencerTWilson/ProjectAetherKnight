@@ -7,7 +7,7 @@ var states : Dictionary = {}
 
 @export var initial_state : State
 
-@onready var component_manager = $"../Components"
+@onready var component_manager: ComponentManager = $"../Components"
 
 
 func _ready():
