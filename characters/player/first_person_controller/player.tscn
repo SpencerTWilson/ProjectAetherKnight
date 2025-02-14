@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dfb58flace8iu"]
+[gd_scene load_steps=59 format=3 uid="uid://dfb58flace8iu"]
 
 [ext_resource type="Script" path="res://characters/player/first_person_controller/player.gd" id="1_qak6g"]
 [ext_resource type="Script" path="res://characters/player/first_person_controller/states/movement_state_machine.gd" id="2_gnkix"]
@@ -19,6 +19,7 @@
 [ext_resource type="Shader" path="res://characters/player/first_person_controller/slash_fade.gdshader" id="17_h1nik"]
 [ext_resource type="Texture2D" uid="uid://bcif0srkar8ov" path="res://characters/player/first_person_controller/dot.png" id="18_vxwsk"]
 [ext_resource type="Shader" path="res://characters/player/first_person_controller/speed_lines.gdshader" id="19_6i4qg"]
+[ext_resource type="Script" path="res://characters/player/first_person_controller/character_multiplayer_data.gd" id="20_8euqb"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qldxx"]
 noise_type = 2
@@ -461,3 +462,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="MultiplayerData" type="Node3D" parent="."]
+script = ExtResource("20_8euqb")
